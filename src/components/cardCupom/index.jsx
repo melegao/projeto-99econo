@@ -13,6 +13,7 @@ const CardDiv = styled.div`
     gap: 10px;
     margin-bottom: 1rem;
     padding: 0px 5px;
+    
 `
 
 const ImgSellerDiv = styled.div`
@@ -35,6 +36,7 @@ const ContentCoupon = styled.div`
 
 const ButtonCoupon = styled.button`
     cursor: pointer;
+    width: 150px;
     background-color: #f95669;
     border: 1px solid #f95669;
     border-radius: 5px;
