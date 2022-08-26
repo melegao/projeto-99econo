@@ -13,6 +13,7 @@ const HeaderSyle = styled.div`
 `
 const NavBarImage = styled.div`
     padding-left: 50px;
+    cursor: pointer;
 `
 const NarBarLinks = styled.ul`
     display: flex;
@@ -53,7 +54,7 @@ const Header = () => {
 
     return (
         <HeaderSyle>
-            <NavBarImage>
+            <NavBarImage onClick={() => navigate("/")}>
                 <img src={logo} alt='99econo' height='70px'/>
             </NavBarImage>
             <div>
