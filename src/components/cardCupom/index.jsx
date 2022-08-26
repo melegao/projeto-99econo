@@ -1,6 +1,34 @@
 import styled from "styled-components";
 
 
+//começa modal
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import BasicModal from "../modal";
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    height: 300,
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    borderRadius: "10px",
+    boxShadow: 5,
+    p: 4,
+  };
+
+
+
+//termina modal
+
+
 const CardDiv = styled.div`
     width: 80%;
     height: 150px;
@@ -52,6 +80,12 @@ const ButtonCoupon = styled.button`
 
 const CardCupom = (props) => {
 
+    // COMEÇA MODAL
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    // TERMINA MODAL
     
     
 
@@ -70,8 +104,38 @@ const CardCupom = (props) => {
                 <p>Validade: {vigency}</p>
             </ContentCoupon>
             <div>
-                <ButtonCoupon>PEGAR CUPOM</ButtonCoupon>                
+                <ButtonCoupon onClick={handleOpen}>PEGAR CUPOM</ButtonCoupon>                
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+
+                    <div>
+                        <p>Confira as intruções de uso:</p>
+                        <p>X</p>
+                    </div>
+                    <div>
+                        <span>{code}</span>
+                        <button>Copiar</button>
+                    </div>
+                    <p>Copie o código acima e aplique no carrinho para obter o desconto.</p>
+                    <button>Ir á loja</button>
+
+                {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Confira as intruções de uso:
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                </Typography>
+                <p>{code}</p> */}
+
+
+                </Box>
+            </Modal>
         </CardDiv>
     )
 }
