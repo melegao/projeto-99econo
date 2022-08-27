@@ -1,13 +1,16 @@
 import styled from "styled-components";
+import { FaRegCopy, FaCheckCircle } from 'react-icons/fa'
+import { MdOpenInNew } from 'react-icons/md' 
+import { useState } from "react";
 
 
 //começa modal
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+
 import Modal from '@mui/material/Modal';
-import BasicModal from "../modal";
+
 
 
 const style = {
@@ -15,17 +18,78 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    height: 300,
+    width: 350,
+    height: 250,
     bgcolor: 'background.paper',
     border: '1px solid #000',
-    borderRadius: "10px",
+    borderRadius: "8px",
     boxShadow: 5,
     p: 4,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   };
+const ModalStyleDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 
+    & h4 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #464646;
+    }
 
+    & p {
+        cursor: pointer;
+    }
+`
+const ModalDivCupom = styled.div`
+    border: 1px dashed black;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    & span {
+        font-weight: bold;
+        color: #f95669;
+    }
+
+    & button {
+        width: 40%;
+        background-color: #F4F4F4;
+        border: 1px solid #F4F4F4;
+        padding: 10px 6px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    & button:hover {
+        background-color: #b8b8b8;
+        border: 1px solid #b8b8b8;
+    }
+`
+const ModalDivInformation = styled.p`
+    font-size: 13px;
+    margin-top: 5px;
+`
+const ButtonUrlStore = styled.button`
+    background-color: #f95669;
+    border: 1px solid #f95669;
+    border-radius: 10px;
+    padding: 13px 0px;
+    color: #fff;
+    font-size: 15px;
+    
+
+    &:hover{
+        cursor: pointer;
+        background-color: #d3283c;
+        border: 1px solid #d3283c;
+    }
+`
 //termina modal
 
 
@@ -78,12 +142,23 @@ const ButtonCoupon = styled.button`
 `
 
 
+
 const CardCupom = (props) => {
 
     // COMEÇA MODAL
     const [open, setOpen] = React.useState(false);
+    const [copyCoupon, setCopyCoupon] = useState('Copiar ')
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleCopyCoupon = (coupon) => {
+        navigator.clipboard.writeText(coupon)
+        setCopyCoupon('Copiado ')
+    }
+
+    const handleClickUrl = (url) => {
+        window.open(url,'_blank')
+    }
 
     // TERMINA MODAL
     
@@ -114,25 +189,18 @@ const CardCupom = (props) => {
             >
                 <Box sx={style}>
 
+                    <ModalStyleDiv>
+                        <h4>Confira as intruções de uso:</h4>
+                        <p onClick={handleClose}>X</p>
+                    </ModalStyleDiv>
                     <div>
-                        <p>Confira as intruções de uso:</p>
-                        <p>X</p>
-                    </div>
-                    <div>
+                    <ModalDivCupom>
                         <span>{code}</span>
-                        <button>Copiar</button>
+                        <button onClick={() => handleCopyCoupon(code)}>{copyCoupon}{copyCoupon === 'Copiar ' ? <FaRegCopy />: <FaCheckCircle /> }</button>
+                    </ModalDivCupom>
+                    <ModalDivInformation>Copie o código acima e aplique no carrinho para obter o desconto.</ModalDivInformation>
                     </div>
-                    <p>Copie o código acima e aplique no carrinho para obter o desconto.</p>
-                    <button>Ir á loja</button>
-
-                {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Confira as intruções de uso:
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                </Typography>
-                <p>{code}</p> */}
-
+                    <ButtonUrlStore onClick={() => handleClickUrl(link)}>Ir á loja <MdOpenInNew /></ButtonUrlStore>
 
                 </Box>
             </Modal>
