@@ -1,20 +1,13 @@
 import styled from "styled-components";
-import { FaRegCopy, FaCheckCircle } from 'react-icons/fa'
-import { MdOpenInNew } from 'react-icons/md' 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 
 //começa modal
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-
 import Modal from '@mui/material/Modal';
 import ModalCupomContent from "../modalCupom";
 
 
-
+//MODAL
 const style = {
     position: 'absolute',
     top: '50%',
@@ -32,6 +25,29 @@ const style = {
     justifyContent: 'space-between',
   };
 
+  const StyleModal = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 5px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    @media (max-width: 768px){
+        width: 60%;
+    }
+
+  `
+//MODAL
+
 const CardDiv = styled.div`
     width: 80%;
     height: 150px;
@@ -43,8 +59,15 @@ const CardDiv = styled.div`
     align-items: center;
     gap: 10px;
     margin-bottom: 1rem;
-    padding: 0px 5px;
+    padding: 5px 0px 10px 0px;
     
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 70%;
+        gap: 10px
+    }
 `
 
 const ImgSellerDiv = styled.div`
@@ -68,6 +91,10 @@ const ContentCoupon = styled.div`
         font-size: 13px;
     }
 `
+const DivButtonCoupon = styled.div`
+    padding-right: 20px;
+`
+
 
 const ButtonCoupon = styled.button`
     cursor: pointer;
@@ -84,26 +111,15 @@ const ButtonCoupon = styled.button`
     }
 `
 
-
-
-
-
 const CardCupom = (props) => {
-
-    const navigate = useNavigate()
 
     // COMEÇA MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
     // TERMINA MODAL
-    
-    
 
     const {description, code, discount, link, vigency, store} = props.cupom
-
-    const loja = store.name.toLowerCase().split(' ').join('-').normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
     return(
         <CardDiv>
@@ -115,18 +131,18 @@ const CardCupom = (props) => {
                 <p>{description}</p>
                 <span>Validade: {vigency}</span>
             </ContentCoupon>
-            <div>
+            <DivButtonCoupon>
                 <ButtonCoupon onClick={handleOpen}>PEGAR CUPOM</ButtonCoupon>                
-            </div>
+            </DivButtonCoupon>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <StyleModal>
                     <ModalCupomContent handleClose={handleClose} cupom={props.cupom}/>
-                </Box>
+                </StyleModal>
             </Modal>
         </CardDiv>
     )

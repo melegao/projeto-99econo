@@ -117,7 +117,7 @@ function ModalCupomContent (props) {
                 {!urlComponada && (<button onClick={() => handleCopyCoupon(code)}>{copyCoupon}{copyCoupon === 'Copiar ' ? <FaRegCopy />: <FaCheckCircle /> }</button>)}                
             </ModalDivCupom>
             <ModalDivInformation>
-                {urlComponada? 'URL Cuponada: não necessita de cupom, para validar a promoção, acesse o site com o link abaixo' : 'Copie o código acima e aplique no carrinho para obter o desconto.'}
+                {urlComponada? 'Não necessita de cupom, para validar a promoção, acesse o site com o link abaixo' : 'Copie o código acima e aplique no carrinho para obter o desconto.'}
             </ModalDivInformation>
         </div>
         <ButtonUrlStore onClick={() => handleClickUrl(link)}>Ir á loja <MdOpenInNew /></ButtonUrlStore>

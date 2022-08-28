@@ -1,4 +1,4 @@
-import Header from "../../components/header"
+import NavBar from "../../components/navBar";
 import styled from "styled-components";
 import { useContext } from "react";
 import CardLoja from "../../components/cardLoja";
@@ -22,7 +22,7 @@ function Lojas () {
 
     return (
         <>
-            <Header />
+            <NavBar />
             <DivRenderStore>
                 {allSellers.map((elem) => (
                     <CardLoja key={elem.id} store={elem}/>

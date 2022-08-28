@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import CardCupom from "../../components/cardCupom";
-import Header from "../../components/header";
 import { useContext } from "react";
 import { CouponContext } from "../../providers/coupons";
+import NavBar from "../../components/navBar";
 
 const DivRenderCard = styled.div`
     display: flex;
@@ -18,7 +18,8 @@ function Home() {
 
   return (
     <>
-      <Header />
+      
+      <NavBar />
       <DivRenderCard>
         {allCupons.map((elem) => (
           <CardCupom key={elem.id} cupom={elem} />

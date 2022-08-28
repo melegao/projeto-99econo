@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom"
 import CardCupom from "../../components/cardCupom";
-import Header from "../../components/header"
+import NavBar from "../../components/navBar";
 import { CouponContext } from '../../providers/coupons'
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ function OneLoja () {
 
     return (
         <>
-            <Header />
+            <NavBar />
             <DivRenderCard>
                 {filteredStore.map((elem) => (
                     <CardCupom key={elem.id} cupom={elem}/>
