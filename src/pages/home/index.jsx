@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { useContext } from "react";
 import CardCupom from "../../components/cardCupom";
 import Header from "../../components/header";
-
+import { useContext } from "react";
 import { CouponContext } from "../../providers/coupons";
 
 const DivRenderCard = styled.div`

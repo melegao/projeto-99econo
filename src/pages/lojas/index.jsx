@@ -1,9 +1,8 @@
 import Header from "../../components/header"
-import axios from "axios";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { lomadeeAppToken, lomadeeSourceId } from "../../database/lomadee";
+import { useContext } from "react";
 import CardLoja from "../../components/cardLoja";
+import { SellersContext } from "../../providers/selles";
 
 const DivRenderStore = styled.div`
   display: flex;
@@ -17,21 +16,15 @@ const DivRenderStore = styled.div`
 
 function Lojas () {
 
-    const [allStores, setAllStores] = useState([]);
+    const { allSellers } = useContext(SellersContext)
 
-    useEffect(() => {
-        axios.get(`https://api.lomadee.com/v2/${lomadeeAppToken}/coupon/_stores?sourceId=${lomadeeSourceId}`)
-            .then((res) => setAllStores(res.data.stores))
-            .catch((err) => console.log(err))
-
-    }, []);
 
 
     return (
         <>
             <Header />
             <DivRenderStore>
-                {allStores.map((elem) => (
+                {allSellers.map((elem) => (
                     <CardLoja key={elem.id} store={elem}/>
                 ))}
             </DivRenderStore>
