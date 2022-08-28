@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
-import { lomadeeAppToken, lomadeeSourceId } from "../database/lomadee";
+import { lomadeeAppToken, lomadeeSourceId, baseUrl } from "../database/lomadee";
 
 
 export const SellersContext = createContext([]);
@@ -10,7 +10,7 @@ export const SellersProvider = ({ children }) => {
     const [allSellers, setAllSellers] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://api.lomadee.com/v2/${lomadeeAppToken}/coupon/_stores?sourceId=${lomadeeSourceId}`)
+        axios.get(`${baseUrl}${lomadeeAppToken}/coupon/_stores?sourceId=${lomadeeSourceId}`)
             .then((res) => setAllSellers(res.data.stores))
             .catch((err) => console.log(err))
 
