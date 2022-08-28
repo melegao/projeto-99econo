@@ -146,6 +146,14 @@ const ButtonCoupon = styled.button`
     }
 `
 
+const AllCouponsStore = styled.p`
+    cursor: pointer;
+    font-size: 14px;
+    &:hover{
+        text-decoration: underline;
+    }
+    `
+
 
 
 const CardCupom = (props) => {
@@ -173,7 +181,7 @@ const CardCupom = (props) => {
 
     const {description, code, discount, link, vigency, store} = props.cupom
 
-    const loja = store.name.toLowerCase().split(' ').join('-')
+    const loja = store.name.toLowerCase().split(' ').join('-').normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
     return(
         <CardDiv>
@@ -208,7 +216,7 @@ const CardCupom = (props) => {
                     <ModalDivInformation>Copie o código acima e aplique no carrinho para obter o desconto.</ModalDivInformation>
                     </div>
                     <ButtonUrlStore onClick={() => handleClickUrl(link)}>Ir á loja <MdOpenInNew /></ButtonUrlStore>
-                    <p onClick={() => navigate(`/lojas/${loja}/${store.id}`)}>Ver mais ofertas de {store.name}</p>
+                    <AllCouponsStore onClick={() => navigate(`/lojas/${loja}`)}>Ver mais ofertas de {store.name}</AllCouponsStore>
                 </Box>
             </Modal>
         </CardDiv>

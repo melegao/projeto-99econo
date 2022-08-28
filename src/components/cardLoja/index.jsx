@@ -37,18 +37,18 @@ function CardLoja (props) {
 
     const {name, image, id} = props.store
 
-    const handleClick = (name, id) => {
+    const handleClick = (name) => {
 
-        const store = name.toLowerCase().split(' ').join('-')
+        const store = name.toLowerCase().split(' ').join('-').normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
-        navigate(`/lojas/${store}/${id}`)
+        navigate(`/lojas/${store}`)
     }
 
     return (
         <CardStore>
             <img src={image} alt={name}/>
             <h3>{name}</h3>
-            <ButtonCoupon onClick={() => handleClick(name, id)}>Ver cupons</ButtonCoupon>
+            <ButtonCoupon onClick={() => handleClick(name)}>Ver cupons</ButtonCoupon>
         </CardStore>
     )
 }

@@ -1,47 +1,35 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom"
+import CardCupom from "../../components/cardCupom";
 import Header from "../../components/header"
-import { lomadeeAppToken, lomadeeSourceId } from "../../database/lomadee";
-import axios from "axios";
-
+import { CouponContext } from '../../providers/coupons'
+import styled from "styled-components";
 
 function OneLoja () {
-
-    const { loja, id } = useParams()
     
+    const { loja } = useParams()
     
-    const [allStores, setAllStores] = useState([]);
-    const [notFoundStore, setNotFoundStore] = useState(false)
+    const { allCupons } = useContext(CouponContext)
 
-    useEffect(() => {
-        axios.get(`https://api.lomadee.com/v2/${lomadeeAppToken}/coupon/_stores?sourceId=${lomadeeSourceId}`)
-            .then((res) => setAllStores(res.data.stores))
-            .catch((err) => console.log(err))    
-
-            
-    }, []);
-
-
+    const filteredStore = allCupons.filter((elem) => elem.store.name.toLowerCase().split(' ').join('-').normalize("NFD").replace(/[\u0300-\u036f]/g, "") === loja)
+    
+    const DivRenderCard = styled.div`
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    `;
 
     return (
         <>
-            {notFoundStore?
-                <>
-                <Header />
-                <h2>Oppps</h2>
-                <p>Não conseguimos encontrar essa página</p>
-                <p>Reporte um erro ou contnue navegando</p>
-                <p>{loja}</p>
-                <p>{id}</p>
-                </>
-            : 
-                <>
-                <Header />
-                <h1>Olá, eu sou uma loja!</h1>
-                <p>{loja}</p>
-                <p>{id}</p>
-                </>
-            }
+            <Header />
+            <DivRenderCard>
+                {filteredStore.map((elem) => (
+                    <CardCupom key={elem.id} cupom={elem}/>
+                ))}
+            </DivRenderCard>
+            
         </>
     )
 }

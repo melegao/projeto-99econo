@@ -11,7 +11,7 @@ function Ways () {
             <Routes>
                 <Route exact path='/' element={<Home />}/>
                 <Route exact path='/lojas' element={<Lojas />}/>
-                <Route exact path='/lojas/:loja/:id' element={<OneLoja />}/>
+                <Route exact path='/lojas/:loja' element={<OneLoja />}/>
                 <Route exact path='/modal' element={<BasicModal />}/>
             </Routes>
         </>

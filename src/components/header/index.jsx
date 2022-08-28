@@ -3,16 +3,17 @@ import logo from '../../assets/images/99econo-logo.png'
 import { useNavigate } from 'react-router-dom';
 
 const HeaderSyle = styled.div`
-    width: 100%;
+    width: auto;
     height: 85px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     margin-bottom: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
 `
 const NavBarImage = styled.div`
-    padding-left: 50px;
     cursor: pointer;
 `
 const NarBarLinks = styled.ul`
@@ -30,8 +31,7 @@ const NarBarLinks = styled.ul`
     }
 `
 const NarBarDivButton = styled.div`
-    padding-right: 50px;
-
+    
     & button {
         cursor: pointer;
         background-color: #fff;

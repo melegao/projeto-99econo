@@ -11,11 +11,9 @@ import { SellersProvider } from './providers/selles';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CouponsProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CouponsProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

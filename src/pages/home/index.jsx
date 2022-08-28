@@ -5,10 +5,11 @@ import { useContext } from "react";
 import { CouponContext } from "../../providers/coupons";
 
 const DivRenderCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 `;
 
 function Home() {
