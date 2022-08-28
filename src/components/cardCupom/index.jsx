@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import Modal from '@mui/material/Modal';
+import ModalCupomContent from "../modalCupom";
 
 
 
@@ -30,69 +31,6 @@ const style = {
     flexDirection: 'column',
     justifyContent: 'space-between',
   };
-const ModalStyleDiv = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-
-    & h4 {
-        font-size: 20px;
-        font-weight: bold;
-        color: #464646;
-    }
-
-    & p {
-        cursor: pointer;
-    }
-`
-const ModalDivCupom = styled.div`
-    border: 1px dashed black;
-    padding: 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    & span {
-        font-weight: bold;
-        color: #f95669;
-    }
-
-    & button {
-        width: 40%;
-        background-color: #F4F4F4;
-        border: 1px solid #F4F4F4;
-        padding: 10px 6px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    & button:hover {
-        background-color: #b8b8b8;
-        border: 1px solid #b8b8b8;
-    }
-`
-const ModalDivInformation = styled.p`
-    font-size: 13px;
-    margin-top: 5px;
-`
-const ButtonUrlStore = styled.button`
-    background-color: #f95669;
-    border: 1px solid #f95669;
-    border-radius: 10px;
-    padding: 13px 0px;
-    color: #fff;
-    font-size: 15px;
-    
-
-    &:hover{
-        cursor: pointer;
-        background-color: #d3283c;
-        border: 1px solid #d3283c;
-    }
-`
-//termina modal
-
 
 const CardDiv = styled.div`
     width: 80%;
@@ -146,13 +84,7 @@ const ButtonCoupon = styled.button`
     }
 `
 
-const AllCouponsStore = styled.p`
-    cursor: pointer;
-    font-size: 14px;
-    &:hover{
-        text-decoration: underline;
-    }
-    `
+
 
 
 
@@ -162,18 +94,8 @@ const CardCupom = (props) => {
 
     // COMEÇA MODAL
     const [open, setOpen] = React.useState(false);
-    const [copyCoupon, setCopyCoupon] = useState('Copiar ')
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const handleCopyCoupon = (coupon) => {
-        navigator.clipboard.writeText(coupon)
-        setCopyCoupon('Copiado ')
-    }
-
-    const handleClickUrl = (url) => {
-        window.open(url,'_blank')
-    }
 
     // TERMINA MODAL
     
@@ -203,20 +125,7 @@ const CardCupom = (props) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-
-                    <ModalStyleDiv>
-                        <h4>Confira as intruções de uso:</h4>
-                        <p onClick={handleClose}>X</p>
-                    </ModalStyleDiv>
-                    <div>
-                    <ModalDivCupom>
-                        <span>{code}</span>
-                        <button onClick={() => handleCopyCoupon(code)}>{copyCoupon}{copyCoupon === 'Copiar ' ? <FaRegCopy />: <FaCheckCircle /> }</button>
-                    </ModalDivCupom>
-                    <ModalDivInformation>Copie o código acima e aplique no carrinho para obter o desconto.</ModalDivInformation>
-                    </div>
-                    <ButtonUrlStore onClick={() => handleClickUrl(link)}>Ir á loja <MdOpenInNew /></ButtonUrlStore>
-                    <AllCouponsStore onClick={() => navigate(`/lojas/${loja}`)}>Ver mais ofertas de {store.name}</AllCouponsStore>
+                    <ModalCupomContent handleClose={handleClose} cupom={props.cupom}/>
                 </Box>
             </Modal>
         </CardDiv>
