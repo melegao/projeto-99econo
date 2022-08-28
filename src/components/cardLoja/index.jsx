@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const CardStore = styled.div`
     background-color: #fff;
@@ -14,8 +15,6 @@ const CardStore = styled.div`
     box-shadow: 2px 2px 5px #C4C4C4;
 
 `
-
-
 const ButtonCoupon = styled.button`
     cursor: pointer;
     
@@ -34,13 +33,22 @@ const ButtonCoupon = styled.button`
 
 function CardLoja (props) {
 
+    const navigate = useNavigate()
+
     const {name, image, id} = props.store
+
+    const handleClick = (name, id) => {
+
+        const store = name.toLowerCase().split(' ').join('-')
+
+        navigate(`/lojas/${store}/${id}`)
+    }
 
     return (
         <CardStore>
             <img src={image} alt={name}/>
             <h3>{name}</h3>
-            <ButtonCoupon onClick={console.log(id)}>Ver cupons</ButtonCoupon>
+            <ButtonCoupon onClick={() => handleClick(name, id)}>Ver cupons</ButtonCoupon>
         </CardStore>
     )
 }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FaRegCopy, FaCheckCircle } from 'react-icons/fa'
 import { MdOpenInNew } from 'react-icons/md' 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 //começa modal
@@ -124,6 +125,10 @@ const ContentCoupon = styled.div`
         font-size: 20px;
         font-weight: bold;
     }
+
+    & span{
+        font-size: 13px;
+    }
 `
 
 const ButtonCoupon = styled.button`
@@ -144,6 +149,8 @@ const ButtonCoupon = styled.button`
 
 
 const CardCupom = (props) => {
+
+    const navigate = useNavigate()
 
     // COMEÇA MODAL
     const [open, setOpen] = React.useState(false);
@@ -166,7 +173,7 @@ const CardCupom = (props) => {
 
     const {description, code, discount, link, vigency, store} = props.cupom
 
-    
+    const loja = store.name.toLowerCase().split(' ').join('-')
 
     return(
         <CardDiv>
@@ -176,7 +183,7 @@ const CardCupom = (props) => {
             <ContentCoupon>
                 <h4>Cupom {store.name}</h4>
                 <p>{description}</p>
-                <p>Validade: {vigency}</p>
+                <span>Validade: {vigency}</span>
             </ContentCoupon>
             <div>
                 <ButtonCoupon onClick={handleOpen}>PEGAR CUPOM</ButtonCoupon>                
@@ -201,7 +208,7 @@ const CardCupom = (props) => {
                     <ModalDivInformation>Copie o código acima e aplique no carrinho para obter o desconto.</ModalDivInformation>
                     </div>
                     <ButtonUrlStore onClick={() => handleClickUrl(link)}>Ir á loja <MdOpenInNew /></ButtonUrlStore>
-
+                    <p onClick={() => navigate(`/lojas/${loja}/${store.id}`)}>Ver mais ofertas de {store.name}</p>
                 </Box>
             </Modal>
         </CardDiv>
