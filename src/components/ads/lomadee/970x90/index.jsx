@@ -14,7 +14,7 @@ const Ads970x90 = () => {
 
   useEffect(() => {
     var iframe = document.createElement("iframe");
-    iframe.src = `http://ad.lomadee.com/banner/view?sourceId=${sourceId}&dimension=27&width=970&height=90&method=0&advertisers=&tags=`;
+    iframe.src = `https://ad.lomadee.com/banner/view?sourceId=${sourceId}&dimension=27&width=970&height=90&method=0&advertisers=&tags=`;
     iframe.style = "width: 970px;height: 90px";
     iframe.frameBorder = 0;
     iframe.width = "0";

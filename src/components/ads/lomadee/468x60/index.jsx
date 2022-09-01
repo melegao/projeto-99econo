@@ -14,7 +14,7 @@ const Ads468x60 = () => {
 
   useEffect(() => {
     var iframe = document.createElement("iframe");
-    iframe.src = `http://ad.lomadee.com/banner/view?sourceId=${sourceId}&dimension=2&width=468&height=60&method=0&advertisers=&tags=`;
+    iframe.src = `https://ad.lomadee.com/banner/view?sourceId=${sourceId}&dimension=2&width=468&height=60&method=0&advertisers=&tags=`;
     iframe.style = "width: 468px;height: 60px";
     iframe.frameBorder = 0;
     iframe.width = "0";
