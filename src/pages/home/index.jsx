@@ -3,6 +3,7 @@ import CardCupom from "../../components/cardCupom";
 import { useContext } from "react";
 import { CouponContext } from "../../providers/coupons";
 import NavBar from "../../components/navBar";
+import AdsHeader from "../../components/ads/adsHeader";
 
 const DivRenderCard = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ function Home() {
 
   return (
     <>
-      
+      <AdsHeader />
       <NavBar />
       <DivRenderCard>
         {allCupons.map((elem) => (
