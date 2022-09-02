@@ -8,7 +8,7 @@ const DivAds = styled.div`
 `
 
 const Ads468x60 = () => {
-  const sourceId = "37644826";
+  const sourceId = "37645311";
 
   //<script src="//ad.lomadee.com/banners/script.js?sourceId=37646612&dimension=2&height=60&width=468&method=0
 
